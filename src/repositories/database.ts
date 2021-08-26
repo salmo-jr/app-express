@@ -4,7 +4,8 @@ const SQL_ITENS_CREATE = `
     CREATE TABLE itens (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         nome TEXT,
-        descricao TEXT
+        descricao TEXT,
+        url_imagem
     )`
 const database = new sqlite3.Database(DBSOURCE, (err) => {
     if (err) {

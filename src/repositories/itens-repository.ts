@@ -23,8 +23,8 @@ const itensRepository = {
     },
 
     atualizar: (id: number, item: Item, callback: (notFound: boolean) => void) => {
-        const sql = 'UPDATE itens SET nome = ?, descricao = ? WHERE id = ?'
-        const params = [item.nome, item.descricao, id]
+        const sql = 'UPDATE itens SET nome = ?, descricao = ?, url_imagem = ? WHERE id = ?'
+        const params = [item.nome, item.descricao, item.urlImagem, id]
         database.run(sql, params, function(_err) {
             callback(this.changes === 0)
         })

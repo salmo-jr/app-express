@@ -1,6 +1,8 @@
 import express from 'express'
 import cors from 'cors'
 import itensRouter from './routers/itens-router'
+import uploadRouter from './routers/upload-router'
+import path from 'path'
 
 // Porta do servidor
 const PORT = process.env.PORT || 4000
@@ -26,7 +28,9 @@ app.use(cors({
 }))
 
 // Rotas
-app.use('/api', itensRouter)
+app.use('/upload', express.static(path.join(__dirname, 'upload')));
+app.use('/api/itens', itensRouter)
+app.use('/api/upload-image', uploadRouter)
 
 // Resposta padrão para quaisquer outras requisições:
 app.use((req, res) => {

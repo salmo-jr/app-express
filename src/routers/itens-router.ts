@@ -4,7 +4,7 @@ import itensRepository from '../repositories/itens-repository'
 
 const itensRouter = express.Router()
 
-itensRouter.post('/itens', (req, res) => {
+itensRouter.post('/', (req, res) => {
     const item: Item = req.body
     itensRepository.criar(item, (id) => {
         if (id) {
@@ -15,11 +15,12 @@ itensRouter.post('/itens', (req, res) => {
     })
 })
 
-itensRouter.get('/itens', (req, res) => {
+itensRouter.get('/', (req, res) => {
+    console.log('oi');
     itensRepository.lerTodos((itens) => res.json(itens))
 })
 
-itensRouter.get('/itens/:id', (req, res) => {
+itensRouter.get('/:id', (req, res) => {
     const id: number = +req.params.id
     itensRepository.ler(id, (item) => {
         if (item) {
@@ -30,7 +31,7 @@ itensRouter.get('/itens/:id', (req, res) => {
     })
 })
 
-itensRouter.put('/itens/:id', (req, res) => {
+itensRouter.put('/:id', (req, res) => {
     const id: number = +req.params.id
     itensRepository.atualizar(id, req.body, (notFound) => {
         if (notFound) {
@@ -41,7 +42,7 @@ itensRouter.put('/itens/:id', (req, res) => {
     })
 })
 
-itensRouter.delete('/itens/:id', (req, res) => {
+itensRouter.delete('/:id', (req, res) => {
     const id: number = +req.params.id
     itensRepository.apagar(id, (notFound) => {
         if (notFound) {
