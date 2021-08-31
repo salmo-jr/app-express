@@ -23,12 +23,10 @@ app.get('/', (req, res) => {
 })
 
 // Cors
-app.use(cors({
-    origin: ['http://localhost:3000']
-}))
+app.use(cors())
 
 // Rotas
-app.use('/upload', express.static(path.join(__dirname, 'upload')));
+app.use('/upload', express.static('upload'));
 app.use('/api/itens', itensRouter)
 app.use('/api/upload-image', uploadRouter)
 
